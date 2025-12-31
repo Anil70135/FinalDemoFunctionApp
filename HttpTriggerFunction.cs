@@ -7,7 +7,7 @@ namespace Company.FunctionApp
 {
     public class HttpTriggerFunction
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<HttpTriggerFunction> _logger;
 
         public HttpTriggerFunction(ILoggerFactory loggerFactory)
         {
@@ -15,11 +15,15 @@ namespace Company.FunctionApp
         }
 
         [Function("HttpTriggerFunction")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+        public HttpResponseData Run(
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "hello")] HttpRequestData req)
         {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            _logger.LogInformation("HTTP trigger function processed a request.");
+
             var response = req.CreateResponse(HttpStatusCode.OK);
-            response.WriteString("Hello from my demo function!");
+            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+            response.WriteString("Hello from my demo function running on .NET 8 isolated!");
+
             return response;
         }
     }
