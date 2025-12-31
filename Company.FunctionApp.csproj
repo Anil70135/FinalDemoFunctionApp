@@ -1,18 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework> <!-- or net6.0 if you want stable -->
+    <!-- Use .NET 6 for stable isolated worker support -->
+    <TargetFramework>net6.0</TargetFramework>
+    <!-- Azure Functions v4 -->
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
     <RootNamespace>Company.FunctionApp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Isolated worker packages -->
     <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.15.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.9.0" OutputItemType="Analyzer" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Copy host.json and local.settings.json to output -->
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
