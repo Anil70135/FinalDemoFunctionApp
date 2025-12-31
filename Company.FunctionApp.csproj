@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework> <!-- Change to net7.0 -->
+    <TargetFramework>net8.0</TargetFramework> <!-- or net6.0 if you want stable -->
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
-    <OutputType>Exe</OutputType>
     <RootNamespace>Company.FunctionApp</RootNamespace>
   </PropertyGroup>
 
